@@ -57,25 +57,18 @@ public class findTheTownJudge {
   }
 
   public int findJudge(int N, int[][] trust) {
-    if (N == 1 && trust.length == 0) {
-      return N;
+    var totalTrust = new int[N + 1];
+
+    for (var t : trust) {
+      totalTrust[t[0]]--;
+      totalTrust[t[1]]++;
     }
 
-    var totalTrust = new int[N];
-    var truster = new boolean[N];
-
-    for (int i = 0; i < trust.length; i++) {
-      var t = trust[i];
-
-      truster[t[0] - 1] = true;
-      totalTrust[t[1] - 1]++;
-    }
-
-    for (var i = 0; i < N; i++) {
+    for (var i = 1; i <= N; i++) {
       var entry = totalTrust[i];
 
-      if (entry == N - 1 && !truster[i]) {
-        return i + 1;
+      if (entry == N - 1) {
+        return i;
       }
     }
 

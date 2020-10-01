@@ -115,5 +115,14 @@ public class findTheTownJudgeTest {
     assertEquals(finder.findJudge(N, trust), 1);
   }
 
+  @Test
+  public void testCase7() {
+
+    var N = 2;
+    var trust = new int[][]{};
+
+    assertEquals(finder.findJudge(N, trust), -1);
+  }
+
 
 }
