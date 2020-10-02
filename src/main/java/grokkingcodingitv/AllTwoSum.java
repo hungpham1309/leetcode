@@ -10,7 +10,7 @@ public class AllTwoSum {
   /**
    * find all doublets of an array that add up to a given number not duplicate
    * <p>
-   * Input: nums = [2,7,11,8], target = 13 Output: [0,2] , [1,3]
+   * Input: nums = [2,7,11,6], target = 13 Output: [0,2] , [1,3]
    */
 
   public List<Integer[]> twoSum(int[] nums, int target) {

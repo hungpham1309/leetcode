@@ -1,8 +1,11 @@
 package grokkingcodingitv;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 public class AllTwoSumTest {
@@ -16,11 +19,11 @@ public class AllTwoSumTest {
   @Test
   public void testCase1() {
 
-    var nums = new int[]{2,7,11,8};
+    var nums = new int[]{2,7,11,6};
 
     var target = 13;
 
-    assert
-    assertArrayEquals(new int[]{0, 1}, allTwoSum.twoSum(nums, target));
+    var actual = allTwoSum.twoSum(nums, target);
+    assertThat(actual).containsExactlyInAnyOrder(new Integer[]{0,2}, new Integer[]{1,3});
   }
 }
