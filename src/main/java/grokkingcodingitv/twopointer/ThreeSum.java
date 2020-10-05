@@ -28,16 +28,19 @@ public class ThreeSum {
       int rightPointer = a.length - 1;
 
       while (leftPointer < rightPointer) {
-        if (leftPointer > 0 && a[leftPointer] == a[leftPointer - 1]) {
-          rightPointer--;
-          leftPointer++;
-          continue;
-        }
         int sum = firstElement + a[leftPointer] + a[rightPointer];
         if (sum == 0) {
+//             * Input: [-2,0,0,2,2]
+
           result.add(Arrays.asList(firstElement, a[leftPointer], a[rightPointer]));
           rightPointer--;
           leftPointer++;
+          while (leftPointer < rightPointer && a[leftPointer] == a[leftPointer - 1]) {
+            leftPointer++;
+          }
+          while (leftPointer < rightPointer && a[rightPointer] == a[rightPointer + 1]) {
+            rightPointer--;
+          }
         }
         if (sum > 0) {
           rightPointer--;
@@ -48,6 +51,35 @@ public class ThreeSum {
       }
     }
 
+    result.toArray();
+
     return result;
+  }
+
+  public int findSumOfTripletClosestToGivenArray(int[] a, int target) {
+
+    Arrays.sort(a);
+    int smallestDifference = Integer.MAX_VALUE;
+    for (int i = 0; i < a.length - 2; i++) {
+      int left = i + 1, right = a.length - 1;
+      while (left < right) {
+        // comparing the sum of three numbers to the 'targetSum' can cause overflow
+        // so, we will try to find a target difference
+        int targetDiff = target - a[i] - a[left] - a[right];
+        if (targetDiff == 0) //  we've found a triplet with an exact sum
+          return target - targetDiff; // return sum of all the numbers
+
+        // the second part of the above 'if' is to handle the smallest sum when we have more than one solution
+        if (Math.abs(targetDiff) < Math.abs(smallestDifference)
+            || (Math.abs(targetDiff) == Math.abs(smallestDifference) && targetDiff > smallestDifference))
+          smallestDifference = targetDiff; // save the closest and the biggest difference
+
+        if (targetDiff > 0)
+          left++; // we need a triplet with a bigger sum
+        else
+          right--; // we need a triplet with a smaller sum
+      }
+    }
+    return target - smallestDifference;
   }
 }
