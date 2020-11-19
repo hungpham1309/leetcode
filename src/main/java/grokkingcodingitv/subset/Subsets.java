@@ -6,6 +6,7 @@ import java.util.List;
 public class Subsets {
 
   /**
+   * No duplicate
    * Input: [1, 3] Output: [], [1], [3], [1,3]
    */
   public List<List<Integer>> findSubsets(int[] nums) {
