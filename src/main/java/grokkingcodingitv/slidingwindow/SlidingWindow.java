@@ -51,4 +51,46 @@ public class SlidingWindow {
   }
 
 
+  public int maxSubArrayK(int[] inputs, int k) {
+    int max = Integer.MIN_VALUE;
+    int start = 0;
+    int maxTillNow = 0;
+
+    for (int i = 0 ; i < inputs.length; i++) {
+      if (i > k-1) {
+        max = Math.max(maxTillNow, max);
+        maxTillNow -= inputs[start];
+        start++;
+      }
+      maxTillNow += inputs[i];
+    }
+    return max;
+  }
+
+  /**
+   * Input: Fruit=['A', 'B', 'C', 'A', 'C']
+   * Output: 3
+   * Explanation: We can put 2 'C' in one basket and one 'A' in the other from the subarray ['C', 'A', 'C']
+   */
+  public int putFruitInto2Baskets(char[] a) {
+    int currentMax = 0;
+    int start = 0;
+    Map<Character, Integer> frequencyMap = new HashMap<>();
+    for (int i = 0; i < a.length; i++) {
+      frequencyMap.put(a[i], frequencyMap.getOrDefault(a[i], 0) + 1 );
+
+      while (frequencyMap.size() > 2) {
+        frequencyMap.put(a[start], frequencyMap.get(a[start]) - 1);
+        if (frequencyMap.get(a[start]) <= 0) {
+          frequencyMap.remove(a[start]);
+        }
+        start++;
+      }
+
+      currentMax = Math.max(currentMax, i - start + 1);
+    }
+
+    return currentMax;
+  }
+
 }
