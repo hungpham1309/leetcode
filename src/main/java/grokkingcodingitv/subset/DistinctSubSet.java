@@ -16,27 +16,19 @@ public class DistinctSubSet {
     Arrays.sort(nums);
     List<List<Integer>> result = new ArrayList<>();
     result.add(new ArrayList<>());
-    List<List<Integer>> remember = new ArrayList<>();
+    int start ;
+    int end = 0;
 
     for (int i = 0; i < nums.length; i++) {
-      if (i > 0 && nums[i] == nums[i - 1]) {
-        List<Integer> temp = new ArrayList<>();
-        for (List<Integer> integers : remember) {
-          temp = new ArrayList<>(integers);
-          temp.add(nums[i]);
-          result.add(temp);
-        }
-        remember.add(temp);
-        continue;
-      } else {
-        remember = new ArrayList<>();
+      start = 0;
+      if (i > 0 && nums[i] == nums[i-1]) {
+        start = end +1;
       }
-      int size = result.size();
-      for (int j = 0; j < size; j++) {
+      end = result.size()-1;
+      for (int j = start; j <= end; j++) {
         List<Integer> temp = new ArrayList<>(result.get(j));
         temp.add(nums[i]);
         result.add(temp);
-        remember.add(temp);
       }
     }
 

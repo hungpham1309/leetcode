@@ -9,7 +9,7 @@ import org.junit.Test;
 
 
 public class DistinctSubSetTest  {
-  DistinctSubSet distinctSubSet = new DistinctSubSet();
+  private DistinctSubSet distinctSubSet = new DistinctSubSet();
 
   /**
    * Input: [1,2,2]
@@ -48,11 +48,11 @@ public class DistinctSubSetTest  {
 
     List<List<Integer>> expected = new ArrayList<>();
     expected.add(Collections.EMPTY_LIST);
-    expected.add(List.of(1));
-    expected.add(List.of(2));
-    expected.add(List.of(1,2));
-    expected.add(List.of(2,2));
-    expected.add(List.of(1,2,2));
+    expected.add(List.of(5));
+    expected.add(List.of(5,5));
+    expected.add(List.of(5,5,5));
+    expected.add(List.of(5,5,5,5));
+    expected.add(List.of(5,5,5,5,5));
 
     assertThat(actual).isEqualTo(expected);
   }
