@@ -16,8 +16,7 @@ public class Permutations {
       int size = permutations.size();
       for (int j = 0; j < size; j++) {
         for (int k = 0 ; k <= permutations.size(); k ++) {
-            List<Integer> temp = new ArrayList<>(nums);
-            temp.add(i, nums[i]);
+
         }
       }
     }
@@ -27,14 +26,4 @@ public class Permutations {
     return result;
   }
 
-  private List<List<Integer>> generatePermutation(List<Integer> nums, int numberToAdd) {
-    List<List<Integer>> temp = new ArrayList<>();
-    for (int i = 0; i <= nums.size(); i++) {
-      List<Integer> temp = new ArrayList<>(nums);
-      temp.add(i, numberToAdd);
-      temp.add(temp);
-    }
-
-    return temp;
-  }
 }
