@@ -25,6 +25,34 @@ public class CirclyLinkedListTest {
   }
 
   @Test
+  public void testCountNodesCirclyLinkedList() {
+    LinkedList linkedList = new LinkedList();
+
+    linkedList.insert(1);
+    linkedList.insert(3);
+    linkedList.insert(0);
+    linkedList.insert(9);
+    linkedList.insert(9);
+    linkedList.insert(6);
+
+    linkedList.tail.next = linkedList.head;
+
+    int sum = 0;
+    Node temp = linkedList.head;
+
+    while (temp != null) {
+      sum += 1;
+      temp = temp.next;
+      if (temp == linkedList.head) {
+        break;
+      }
+
+    }
+
+    assertThat(sum).isEqualTo(6);
+  }
+
+  @Test
   public void testIsNotCirclyLinkedList() {
     LinkedList linkedList = new LinkedList();
 
