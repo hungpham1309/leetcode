@@ -1,5 +1,8 @@
 package grokkingcodingitv.cyclicsort;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DuplicateNumber {
 
   /**
@@ -15,12 +18,37 @@ public class DuplicateNumber {
           int temp = nums[shouldBePost];
           nums[shouldBePost] = nums[i];
           nums[i] = temp;
+        } else {
+          return nums[i];
         }
-        else return nums[i];
       } else {
         i++;
       }
     }
     return 0;
+  }
+
+  public List<Integer> findAllDuplicate(int[] nums) {
+    List<Integer> result = new ArrayList<>();
+
+    int i = 0;
+    while (i < nums.length) {
+      int pos = nums[i] - 1;
+      if (nums[i] != nums[pos]) {
+        int temp = nums[i];
+        nums[i] = nums[pos];
+        nums[pos] = temp;
+      }
+      else {
+        i++;
+      }
+    }
+
+    for (i = 0; i < nums.length; i++) {
+      if (nums[i] != i + 1) {
+        result.add(nums[i]);
+      }
+    }
+    return result;
   }
 }
